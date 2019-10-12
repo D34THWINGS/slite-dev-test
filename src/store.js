@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const createStore = () => {
     const documents = new Map();
     return {
-        insert: (id) => __awaiter(void 0, void 0, void 0, function* () { return documents.set(id, { id, data: '' }); }),
+        insert: (id) => __awaiter(void 0, void 0, void 0, function* () { return documents.set(id, { id, data: '', styles: [] }); }),
         update: (id, partial) => __awaiter(void 0, void 0, void 0, function* () {
             const document = documents.get(id);
             if (!document) {

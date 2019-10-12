@@ -13,7 +13,7 @@ export enum CommandType {
   Delete = 'delete',
 }
 
-export const commands: { [K in CommandType]: (...args: string[]) => Response} = {
+export const commands: { [K in CommandType]: (...args: string[]) => (Promise<Response> | Response) } = {
   [CommandType.Get]: get,
   [CommandType.Create]: create,
   [CommandType.Delete]: remove,

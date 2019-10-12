@@ -11,10 +11,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const reply_1 = require("../reply");
 const store_1 = require("../store");
-exports.get = (docId) => __awaiter(void 0, void 0, void 0, function* () {
+const getStyleMarkdown = (style) => {
+    switch (style) {
+        case 'bold': return '**';
+        case 'italic': return '*';
+        default: return '';
+    }
+};
+const applyStyleToText = (text, documentStyle) => {
+    return text.slice(0, documentStyle.start)
+        + getStyleMarkdown(documentStyle.style)
+        + text.slice(documentStyle.start, documentStyle.end)
+        + getStyleMarkdown(documentStyle.style)
+        + text.slice(documentStyle.end);
+};
+exports.get = (docId, format = 'txt') => __awaiter(void 0, void 0, void 0, function* () {
     const document = yield store_1.store.findById(docId);
     if (document === null) {
         return reply_1.replyNotFound();
+    }
+    if (format === 'md') {
+        return reply_1.reply(document.styles.reduce(applyStyleToText, document.data));
     }
     return reply_1.reply(document.data);
 });

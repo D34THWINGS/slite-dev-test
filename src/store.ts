@@ -1,15 +1,22 @@
 export type DocumentId = string
 
+export type DocumentStyle = {
+  style: string
+  start: number
+  end: number
+}
+
 export type Document = {
   id: DocumentId
   data: string
+  styles: DocumentStyle[]
 }
 
 const createStore = () => {
   const documents = new Map<DocumentId, Document>()
 
   return {
-    insert: async (id: DocumentId) => documents.set(id, { id, data: '' }),
+    insert: async (id: DocumentId) => documents.set(id, { id, data: '', styles: [] }),
     update: async (id: DocumentId, partial: Partial<Document>) => {
       const document = documents.get(id)
       if (!document) {
