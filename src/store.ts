@@ -1,15 +1,15 @@
 export type DocumentId = string
 
 export type DocumentStyle = {
-  style: string
-  start: number
-  end: number
+  style: string;
+  start: number;
+  end: number;
 }
 
 export type Document = {
-  id: DocumentId
-  data: string
-  styles: DocumentStyle[]
+  id: DocumentId;
+  data: string;
+  styles: DocumentStyle[];
 }
 
 const createStore = () => {

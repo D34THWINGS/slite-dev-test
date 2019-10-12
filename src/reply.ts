@@ -1,6 +1,6 @@
 export type Response = {
-  statusCode: number
-  data: string | null
+  statusCode: number;
+  data: string | null;
 }
 
 export const reply = (data: string | null, statusCode = 200): Response => ({ data, statusCode })
