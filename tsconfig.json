@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "module": "commonjs",
     "noResolve": false,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -13,8 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
-    "jsx": "react"
+    "isolatedModules": false
   },
   "include": ["src/*.ts"]
 }
