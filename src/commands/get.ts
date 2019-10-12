@@ -17,7 +17,7 @@ const applyStyleToText = (text: string, documentStyle: DocumentStyle): string =>
     + text.slice(documentStyle.end)
 }
 
-export const get = async (docId: string, format: string = 'txt'): Promise<Response> => {
+export const get = async (docId: string, format = 'txt'): Promise<Response> => {
   const document = await store.findById(docId)
   if (document === null) {
     return replyNotFound()
