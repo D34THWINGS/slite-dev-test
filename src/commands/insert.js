@@ -11,6 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const reply_1 = require("../reply");
 const store_1 = require("../store");
+const getUpdatedStyles = (documentStyles, insertPosition) => documentStyles.map(documentStyle => {
+    if (insertPosition >= documentStyle.start && insertPosition < documentStyle.end) {
+        return Object.assign(Object.assign({}, documentStyle), { end: documentStyle.end + insertPosition });
+    }
+    return documentStyle;
+});
 exports.insert = (docId, positionOrText, text) => __awaiter(void 0, void 0, void 0, function* () {
     const document = yield store_1.store.findById(docId);
     if (document === null) {
@@ -19,6 +25,6 @@ exports.insert = (docId, positionOrText, text) => __awaiter(void 0, void 0, void
     const insertedText = typeof text === 'undefined' ? positionOrText : text;
     const positionInt = parseInt(positionOrText) || document.data.length;
     const editedText = document.data.slice(0, positionInt) + insertedText + document.data.slice(positionInt);
-    yield store_1.store.update(docId, { data: editedText });
+    yield store_1.store.update(docId, { data: editedText, styles: getUpdatedStyles(document.styles, positionInt) });
     return reply_1.replySuccess();
 });
