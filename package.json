@@ -8,10 +8,11 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "dev": "yarn watch & nodemon .",
-    "watch": "tsc --watch",
+    "dev": "yarn build:watch & nodemon .",
     "build": "tsc",
-    "test": "jest ./test.js"
+    "build:watch": "tsc --watch",
+    "test": "jest ./test.js",
+    "test:watch": "yarn test --watch"
   },
   "keywords": [
     "Slite",
@@ -24,7 +25,12 @@
     "jest": "^23.1.0"
   },
   "devDependencies": {
+    "@types/node": "^12.7.12",
     "nodemon": "^1.19.3",
     "typescript": "^3.6.4"
+  },
+  "engines": {
+    "node": "^12.7.0",
+    "yarn": "^1.17.0"
   }
 }
