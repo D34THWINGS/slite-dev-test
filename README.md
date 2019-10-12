@@ -1,4 +1,7 @@
 # Slite Dev Test
+
+![Travis](https://travis-ci.org/D34THWINGS/slite-dev-test.svg?branch=master)
+
 The goal is to create a TCP server in Node.js that can store, update and display simple note with formatting.
 
 ## Example
