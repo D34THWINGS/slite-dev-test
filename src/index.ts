@@ -1,1 +1,15 @@
-// Your code goes here
+import { createServer } from 'net'
+
+const { PORT = 1337 } = process.env
+
+const server = createServer(connection => {
+  console.log('Client connected')
+  connection.on('end', () => console.log('Client disconnected'))
+  connection.pipe(connection)
+})
+
+server.on('error', error => console.error(error))
+
+server.listen(PORT, () => {
+  console.log(`Server listens to port ${PORT}`)
+})
